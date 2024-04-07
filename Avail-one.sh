@@ -100,8 +100,9 @@ cd "$INSTALL_DIR" || exit
 
 # 下载并解压发布包
 wget "$RELEASE_URL"
-tar -xvzf avail-light-linux-amd64.tar.gz
-cp avail-light-linux-amd64 avail-light
+tar -xvzf "avail-light-${OS}-${ARCH}.tar.gz"
+cp "avail-light-${OS}-${ARCH}" avail-light
+
 
 # 创建identity.toml文件
 read -p "请输入您的12位钱包助记词：" SECRET_SEED_PHRASE

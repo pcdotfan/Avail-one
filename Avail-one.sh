@@ -77,7 +77,22 @@ install_dependencies "${dependencies[@]}"
 
 # 设置安装目录和发布 URL
 INSTALL_DIR="${HOME}/avail-light"
-RELEASE_URL="https://github.com/availproject/avail-light/releases/download/v1.7.10/avail-light-linux-amd64.tar.gz"
+
+OS=$(uname -s | tr '[:upper:]' '[:lower:]')  # 转换为小写
+ARCH=$(uname -m)
+
+case $ARCH in
+    x86_64)
+        ARCH="amd64"
+        ;;
+    aarch64)
+        ARCH="arm64"
+        ;;
+esac
+
+# 拼接 URL
+RELEASE_URL="https://github.com/availproject/avail-light/releases/download/v1.7.10/avail-light-${OS}-${ARCH}.tar.gz"
+
 
 # 创建安装目录并进入
 mkdir -p "$INSTALL_DIR"
